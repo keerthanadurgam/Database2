@@ -29,4 +29,4 @@ const Reservations = sequelize.define(
     }
 );
 
-module.exports =Reservations;
+export default Reservations;

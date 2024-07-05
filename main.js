@@ -61,4 +61,11 @@ var test = function () { return __awaiter(void 0, void 0, void 0, function () {
     });
 }); };
 test();
+sequelize.sync()
+    .then(function () {
+    console.log('Database & tables synced!');
+})
+    .catch(function (err) {
+    console.error('Error syncing database:', err);
+});
 exports.default = sequelize;

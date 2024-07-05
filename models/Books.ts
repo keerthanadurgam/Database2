@@ -1,5 +1,6 @@
 import {DataTypes} from 'sequelize';
 import sequelize from "../main";
+import Authors from "./Authors"
 const Books = sequelize.define('Books',
 { id:{
     type:DataTypes.INTEGER,
@@ -29,4 +30,5 @@ publication_year: {
 }
 });
 
-module.exports=Books;
+export default Books;
+

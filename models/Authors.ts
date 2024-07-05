@@ -19,4 +19,4 @@ const Authors = sequelize.define('Authors',
     },
 }
 );
-module.exports=Authors;
+export default Authors;

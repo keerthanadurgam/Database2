@@ -25,4 +25,4 @@ const Members=sequelize.define(
 
     }
 );
-module.exports=Members;
+export default Members;

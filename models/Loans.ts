@@ -29,4 +29,4 @@ due_date:{
 },
     }
 );
-module.exports=Loans;
+export default Loans;

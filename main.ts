@@ -13,7 +13,17 @@ const test = async()=>{
       }
     };
     test();
+    
+    
+    sequelize.sync()
+    .then(() => {
+      console.log('Database & tables synced!');
+    })
+    .catch(err => {
+      console.error('Error syncing database:', err);
+    });
 
     export default sequelize;
+    
 
 
