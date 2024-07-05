@@ -23,4 +23,4 @@ var Members = main_1.default.define('Members', {
         unique: true,
     },
 });
-module.exports = Members;
+exports.default = Members;

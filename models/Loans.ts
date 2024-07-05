@@ -1,9 +1,13 @@
 import {DataTypes } from 'sequelize';
 import sequelize from "../main";
+import Books from "./Books";
+import Members from "./Members";
 const Loans= sequelize.define(
     'Loans',
 {id:{
     type:DataTypes.INTEGER,
+    primaryKey: true,
+    autoIncrement: true,
 },
 Book_id:{
     type:DataTypes.INTEGER,
@@ -12,7 +16,7 @@ Book_id:{
         key: 'id'            
    },
 },
-member_id:{
+Member_id:{
     type:DataTypes.INTEGER,
     references:{
         model: 'Members',
@@ -30,3 +34,8 @@ due_date:{
     }
 );
 export default Loans;
+Books.hasMany(Loans,{ as: 'Loans', foreignKey: 'Book_id'});
+Loans.belongsTo(Books, {foreignKey: 'Book_id'});
+
+Members.hasOne(Loans, { as: 'Loans', foreignKey:'Member_id'});
+Loans.belongsTo(Members,{foreignKey: 'Member_id'});

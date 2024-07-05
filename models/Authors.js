@@ -19,4 +19,4 @@ var Authors = main_1.default.define('Authors', {
         type: sequelize_1.DataTypes.STRING(100),
     },
 });
-module.exports = Authors;
+exports.default = Authors;

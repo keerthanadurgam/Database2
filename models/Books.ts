@@ -1,6 +1,6 @@
 import {DataTypes} from 'sequelize';
 import sequelize from "../main";
-import Authors from "./Authors"
+import Authors from "./Authors";
 const Books = sequelize.define('Books',
 { id:{
     type:DataTypes.INTEGER,
@@ -31,4 +31,7 @@ publication_year: {
 });
 
 export default Books;
+
+Authors.hasMany(Books, { as: 'Books', foreignKey: 'authorId' });
+Books.belongsTo(Authors, { foreignKey: 'authorId' });
 

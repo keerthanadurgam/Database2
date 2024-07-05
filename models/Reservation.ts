@@ -1,5 +1,7 @@
 import {DataTypes } from 'sequelize';
 import sequelize from "../main";
+import Books from "./Books";
+import Members from "./Members";
 const Reservations = sequelize.define(
     'Reservations',
     {
@@ -15,7 +17,7 @@ const Reservations = sequelize.define(
                 key: 'id'
             }
         },
-        member_id:{
+        Member_id:{
             type: DataTypes.INTEGER,
             references: {
                 model: 'Members',
@@ -30,3 +32,9 @@ const Reservations = sequelize.define(
 );
 
 export default Reservations;
+
+Books.hasMany(Reservations,{as:'Reservations', foreignKey:'Book_id'}) ;
+Reservations.belongsTo(Books,{foreignKey:'Book_id'});         
+
+Members.hasMany(Reservations,{as:'Reservations', foreignKey:'Member_id'});
+Reservations.belongsTo(Members,{ foreignKey:'Member_id'});

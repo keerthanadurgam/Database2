@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var sequelize_1 = require("sequelize");
 var main_1 = require("../main");
+var Authors_1 = require("./Authors");
 var Books = main_1.default.define('Books', { id: {
         type: sequelize_1.DataTypes.INTEGER,
         primaryKey: true,
@@ -29,4 +30,6 @@ var Books = main_1.default.define('Books', { id: {
         type: sequelize_1.DataTypes.INTEGER,
     }
 });
-module.exports = Books;
+exports.default = Books;
+Authors_1.default.hasMany(Books, { as: 'Books', foreignKey: 'authorId' });
+Books.belongsTo(Authors_1.default, { foreignKey: 'authorId' });
