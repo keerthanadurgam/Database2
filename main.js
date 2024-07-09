@@ -37,6 +37,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var sequelize_1 = require("sequelize");
+var Books_1 = require("./models/Books");
+var Authors_1 = require("./models/Authors");
+var Members_1 = require("./models/Members");
 var sequelize = new sequelize_1.Sequelize("database24", "keerthana", "Keerthana1", {
     host: 'localhost',
     dialect: 'postgres'
@@ -81,4 +84,26 @@ var synctables = function () { return __awaiter(void 0, void 0, void 0, function
     });
 }); };
 synctables();
+function synctables1() {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, Authors_1.default.sync({ force: true })];
+                case 1:
+                    _a.sent();
+                    console.log('Author model is created');
+                    return [4 /*yield*/, Books_1.default.sync({ force: true })];
+                case 2:
+                    _a.sent();
+                    console.log('Book model is created');
+                    return [4 /*yield*/, Members_1.default.sync({ force: true })];
+                case 3:
+                    _a.sent();
+                    console.log('Member model is created');
+                    return [2 /*return*/];
+            }
+        });
+    });
+}
+synctables1();
 exports.default = sequelize;
