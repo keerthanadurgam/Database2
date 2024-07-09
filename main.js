@@ -50,22 +50,35 @@ var test = function () { return __awaiter(void 0, void 0, void 0, function () {
                 return [4 /*yield*/, sequelize.authenticate()];
             case 1:
                 _a.sent();
-                console.log('Connection has been established successfully.');
+                console.log('Connection has been established successfully');
                 return [3 /*break*/, 3];
             case 2:
                 error_1 = _a.sent();
-                console.error('Unable to connect to the database:', error_1);
+                console.error('Unable to connect to the database', error_1);
                 return [3 /*break*/, 3];
             case 3: return [2 /*return*/];
         }
     });
 }); };
 test();
-sequelize.sync()
-    .then(function () {
-    console.log('Database & tables synced!');
-})
-    .catch(function (err) {
-    console.error('Error syncing database:', err);
-});
+var synctables = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var error_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, sequelize.sync({ force: true })];
+            case 1:
+                _a.sent();
+                console.log('Tables sync done successfully.');
+                return [3 /*break*/, 3];
+            case 2:
+                error_2 = _a.sent();
+                console.error('error in sync tables:', error_2);
+                return [3 /*break*/, 3];
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+synctables();
 exports.default = sequelize;

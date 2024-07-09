@@ -29,9 +29,22 @@ publication_year: {
     type: DataTypes.INTEGER,
 }
 });
-
-export default Books;
-
+const InsertBooks = async()=>{
+    try{
+      const Booksdata = await Books.bulkCreate([
+        {title: "gitanjali", authorId: 1, genre: 'poetry', isbn: '97806839349',publication_year:10 },
+         {title:"kabir grantha valli", authorId:2, genre:'religion', isbn: ' 9789326354240', publication_year:28}
+      ]);
+      console.log("Books table created successfully");
+      return Booksdata;
+    }catch(err){
+      console.error("error in inserting data into Books")
+      return null;
+    };
+  }
+    InsertBooks();
+         
 Authors.hasMany(Books, { as: 'Books', foreignKey: 'authorId' });
 Books.belongsTo(Authors, { foreignKey: 'authorId' });
-
+export default Books;
+      
