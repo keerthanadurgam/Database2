@@ -1,10 +1,10 @@
 const express=require('express');
 const router = express.Router();
-import Member from '../models/Members';
+import Members from '../models/Members';
 
 router.get('/', async (req, res) => {
     try {
-        const members = await Member.findAll();
+        const members = await Members.findAll();
         if (members.length === 0) return res.status(404).json({ message: "No members Found" });
         res.json({Members: members});
     } catch (err) {
@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
     try {
-        const member = await Member.findByPk(req.params.id);
+        const member = await Members.findByPk(req.params.id);
         if (member === null) {
             return res.status(404).json({ message: "Member Not Found" });
         }
@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async (req, res) => {
     try {
-        const member = await Member.create(req.body);
+        const member = await Members.create(req.body);
         res.json(member);
     } catch (err) {
         res.status(400).json({message: err.message});
@@ -36,9 +36,9 @@ router.post('/', async (req, res) => {
 
 router.put('/:id', async (req, res) => {
     try {
-        const [updated] = await Member.update(req.body, {where: {id: req.params.id}});
+        const [updated] = await Members.update(req.body, {where: {id: req.params.id}});
         if (updated) {
-            const updatedMember = await Member.findByPk(req.params.id);
+            const updatedMember = await Members.findByPk(req.params.id);
             res.json(updatedMember);
         } else {
             res.status(404).json({ message: "Member Not Found" });
@@ -50,7 +50,7 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async (req, res) => {
     try {
-        const deleted = await Member.destroy({where: {id: req.params.id}});
+        const deleted = await Members.destroy({where: {id: req.params.id}});
         if (deleted) {
             res.json({ message: "Member Deleted" });
         } else {

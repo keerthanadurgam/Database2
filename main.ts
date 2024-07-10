@@ -2,6 +2,10 @@ import {Sequelize} from 'sequelize';
 import Books from "./models/Books"
 import Authors from './models/Authors';
 import Members from "./models/Members"
+const express=require('express');
+const router = express.Router();
+const app=express();
+
 
 const sequelize = new Sequelize ("database24", "keerthana", "Keerthana1",{
     host: 'localhost',
@@ -43,7 +47,23 @@ const test = async()=>{
     synctables1();
 
     export default sequelize;
+const authorRoutes=require('./Routes/author.routes');
+const bodyParser = require('body-parser');
+const bookRoutes=require('./Routes/Books.routes')
+const memberRoutes=require('./Routes/Members.routes')
+const loanRoutes=require('./Routes/Loans.routes');
+const reservationRoutes=require('./Routes/Reservations.routes')
+
 
     
-
+    app.use('/api/ping', ((req, res) => {  
+      res.json({ message: 'pong' });
+  }));
+  app.use(bodyParser.json());
+  app.use('/api/authors',authorRoutes);
+  app.use('/api/books',bookRoutes);
+  app.use('/api/members',memberRoutes);
+  app.use('/api/loans',loanRoutes);
+  app.use('/api/reservations',reservationRoutes)
+  app.listen(3000,()=>console.log('Server is running the port no 3000'));
   
