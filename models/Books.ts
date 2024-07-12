@@ -27,7 +27,8 @@ isbn: {
 },
 publication_year: {
     type: DataTypes.INTEGER,
-},
+}},
+//indexes
 {
   modelName: 'Books',
   tableName: 'Books',

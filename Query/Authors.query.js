@@ -24,3 +24,23 @@ router.get('/books-by-author/:authorId', async (req, res) => {
         res.status(500).json({ error: 'Server error' });
     }
 });
+//Transaction 
+const transactions = async (req, res) => {
+    const t = await sequelize.transaction();
+    try {
+        const Authors2 = await Authors.create({
+            id: 3,
+            name: 'kaloji',
+            birthyear: 1914,
+            nationality: 'India'
+        }, {
+            transaction: t
+        });
+        await t.commit();
+        res.status(200).json('ok');
+    } catch (e) {
+        await t.rollback();
+        res.status(500).json({ error: e.message }); // Sending error response
+    }
+};
+module.exports= transactions;
