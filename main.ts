@@ -46,7 +46,7 @@ const test = async()=>{
   }
     synctables1();
 
-    export default sequelize;
+export default sequelize;
 const authorRoutes=require('./Routes/author.routes');
 const bodyParser = require('body-parser');
 const bookRoutes=require('./Routes/Books.routes')
@@ -66,4 +66,3 @@ const reservationRoutes=require('./Routes/Reservations.routes')
   app.use('/api/loans',loanRoutes);
   app.use('/api/reservations',reservationRoutes)
   app.listen(3000,()=>console.log('Server is running the port no 3000'));
-  

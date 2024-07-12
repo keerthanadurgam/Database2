@@ -27,7 +27,17 @@ isbn: {
 },
 publication_year: {
     type: DataTypes.INTEGER,
-}
+},
+{
+  modelName: 'Books',
+  tableName: 'Books',
+  indexes: [
+    {
+        name: 'idx_title',
+        fields: ['title'],
+        unique : true
+    },
+]
 });
 const InsertBooks = async()=>{
     try{
